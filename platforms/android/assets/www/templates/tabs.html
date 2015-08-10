@@ -1,0 +1,24 @@
+<!--
+Create tabs with an icon and label, using the tabs-stable style.
+Each tab's child <ion-nav-view> directive will have its own
+navigation history that also transitions its views in and out.
+-->
+<ion-tabs class="tabs-icon-top tabs-stable">
+
+    <!-- Account Tab -->
+    <ion-tab title="Account" icon-off="ion-ios-gear-outline" icon-on="ion-ios-gear" href="#/tab/account">
+        <ion-nav-view name="tab-account"></ion-nav-view>
+    </ion-tab>
+    
+    <!-- Plans Tab -->
+  <ion-tab title="Plans" icon-off="ion-android-folder-open" icon-on="ion-android-folder-open" href="#/tab/plans">
+    <ion-nav-view name="tab-plans"></ion-nav-view>
+  </ion-tab>
+
+  <!-- Exercises Tab -->
+  <ion-tab title="Exercises" icon-off="ion-android-clipboard" icon-on="ion-android-clipboard" href="#/tab/exercises">
+    <ion-nav-view name="tab-exercises"></ion-nav-view>
+  </ion-tab>
+
+
+</ion-tabs>

@@ -1,0 +1,40 @@
+﻿<ion-view view-title="Plans">
+    <ion-content>
+
+        <!--Listi yfir öll plön-->
+        <ion-list>
+            <ion-item class="item-remove-animate item-avatar item-icon-left" ng-repeat="plan in plans" type="item-text-wrap" href="#/tab/plans/{{plan.id}}">
+                <h2>{{plan.title}}</h2>
+                <i class="icon ion-calendar"></i>
+
+                <ion-option-button class="button-assertive" ng-click="remove(plan)">
+                    Delete
+                </ion-option-button>
+            </ion-item>
+        </ion-list>
+
+
+
+
+        <!--Takki til þess að opna möguleika til að bæta við plönum-->
+        <button class="button button-float" ng-click="addPlan()" ng-show="showButton">
+            <i class="icon ion-plus"></i>
+        </button>
+
+        <div ng-show="showAddPlan">
+            <h5>Choose a date</h5>
+            <ionic-datepicker idate="currentDate" disablepreviousdates="true" disablefuturedates="false" callback="datePickerCallback" disableddates="disabledDates" title="title">
+                <button class="button button-block button-positive"> {{ currentDate | date:'dd - MMMM - yyyy' }} </button>
+            </ionic-datepicker>
+
+            <button id="cancelButton" class="button button-positive" ng-click="cancelPlan()">Close</button>
+            <button id="submitButton" class="button button-positive" ng-click="addNewPlan(currentDate)">Add Plan</button>
+        </div>
+
+        Date is: {{ currentDate }}
+        <pre ng-bind='plans | json'></pre>
+
+        <button class="button" ng-click="ClearPlans()">Clear Plans</button>
+
+    </ion-content>
+</ion-view>
