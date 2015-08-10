@@ -1,0 +1,50 @@
+﻿<ion-view view-title="{{plan.title}}">
+    <ion-content>
+
+       
+        
+        <!--Rauður plústakki neðst til hægri til þess að opna möguleikann að bæta við exercises-->
+        <button class="button button-float" ng-click="addExercises()" ng-show="!showCheckboxes">
+            <i class="icon ion-plus"></i>
+        </button>
+
+        <!--Listi yfir æfingar sem hægt er að bæta við!-->
+        <div class="checkboxList">
+            <ion-list ng-show="showCheckboxes">
+                <h4>SELECT EXERCISES</h4>
+                <ion-item ng-repeat="exercise in exercises" ng-style="{'line-height': '12px'}" class="checkboxList">
+                    <input type="checkbox" checklist-model="plan.exercises" checklist-value="exercise" />
+                    <div id="labels">
+                        <h2 id="label1">{{ exercise.title }}</h2>
+                        <p id="label2">{{ exercise.type }}</p>
+                    </div>
+
+                </ion-item>
+            </ion-list>
+        </div>
+
+        <!--Confirm takki til þess að fela lista yfir mögulegar æfingar og bætá plans í localstorage-->
+        <div ng-show="showCheckboxes" class="checkboxList" id="ConfirmDiv">
+            <button id="ConfirmBtn" class="button button-positive" ng-click="hideExercises()">Confirm</button>
+        </div>
+
+        <!--Listi yfir æfingar plansins-->
+        <ion-list show-delete="false" can-swipe="true">
+            <ion-item class="item-remove-animate" ng-repeat="exercise in plan.exercises" id="item_{{plan.id}}_{{exercise.id}}" href="#/tab/plans/{{ plan.id }}/{{ exercise.id }}">
+                <h2>{{exercise.title}}</h2>
+                <ion-option-button class="button-assertive icon ion-trash-a" ng-click="removeExercise(plan, exercise)"></ion-option-button>
+                <ion-option-button class="button-light icon ion-checkmark" ng-click="finished(plan.id, exercise.id)"></ion-option-button>
+            </ion-item>
+        </ion-list>
+
+        
+
+
+
+        <!--Birta json fylkin neðst til að sjá hvað þær innihalda-->
+        <pre ng-bind='exercises | json'></pre>
+        <br />
+        <!--<pre ng-bind='plans | json'></pre>-->
+        
+    </ion-content>
+</ion-view>
